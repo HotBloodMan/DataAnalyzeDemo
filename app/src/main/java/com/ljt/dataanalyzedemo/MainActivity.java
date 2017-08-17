@@ -19,7 +19,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         try {
 //            sax_xml();
-            testDom();
+//            testDom();
+            getPullPersons();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -47,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
         for(Person person:list){
             String result = person.toString();
             Log.d(TAG,"result==__"+result);
+        }
+    }
+
+
+    public void getPullPersons() throws Exception{
+        InputStream is = getResources().openRawResource(R.raw.datasax);
+        List<Person> list = PullService.getPersons(is);
+        for(Person persons:list){
+            Log.d("TAG","pull--list=="+persons.toString());
         }
     }
 }
